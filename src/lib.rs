@@ -40,6 +40,16 @@ pub fn v2(arr: Vec<JsValue>) -> Vec<JsValue> {
     types
 }
 
+#[wasm_bindgen]
+pub fn print(s: JsString) {
+    console_log!("{}", s);
+}
+
+#[wasm_bindgen]
+pub fn concat(s1: JsString, s2: JsString) -> JsValue {
+    JsValue::from_str(&format_args!("{}{}", s1, s2).to_string())
+}
+
 fn get_type(arg: &JsValue) -> JsValue {
     if arg.is_array() {
         JsValue::from_str("array")
